@@ -1,0 +1,71 @@
+doctype html
+html(lang='en', ng-app='Calculator')
+    head
+        meta(charset='UTF-8')
+        title Title
+        script(type='application/javascript', src='/js/vendor.js')
+        script(type='application/javascript', src='/js/main.js')
+        link(href='/css/bootstrap.min.css', rel='stylesheet')
+        link(href='/css/bootstrap-theme.min.css', rel='stylesheet')
+        link(href='/css/style.css', rel='stylesheet')
+    body(ng-controller='CalculatorCtrl', ng-keypress='keypressEnter($event)')
+        .panel.panel-default
+            .panel-heading Курси валют ПриватБанку
+            table.table
+                tr
+                    td Валюта
+                    td Купівля
+                    td Продаж
+                tr(ng-repeat='valute in valuteArray | limitTo: 3 track by $index ')
+                    td {{valute.ccy}} / {{valute.base_ccy}}
+                    td {{valute.buy}}
+                    td {{valute.sale}}
+        .container
+            .panel.panel-default
+                .panel-heading Калькулятор
+                p Expression: {{expression}}
+                p Ans = {{ans}}
+                input(type='text', placeholder='0', ng-model='inputDisplay')
+                br
+                button(ng-click='backspace()')<--
+                button(ng-click='clear()') C
+                br
+                button() ~
+                button(value='(' ng-click='number($event)') (
+                button(value=')', ng-click='number($event)') )
+                button(ng-click='sqrtFunc()') √
+                button(value='7', ng-click='number($event)') 7
+                button(value='8', ng-click='number($event)') 8
+                button(value='9', ng-click='number($event)') 9
+                button(value='/', ng-click='division($event)') /
+                button(ng-click='removeStorage()') MC
+                br
+                button(ng-click='logFunc()') log
+                button(ng-click='sinFunc()') sin
+                button(ng-click='twoFunc()') x^2
+                button(ng-click='percent()') %
+                button(value='4', ng-click='number($event)') 4
+                button(value='5', ng-click='number($event)') 5
+                button(value='6', ng-click='number($event)') 6
+                button(value='*', ng-click='multiplication($event)') *
+                button(ng-click='insertFromStorage()') MR
+                br
+                button(ng-click='lnFunc()') ln
+                button(ng-click='cosFunc()') cos
+                button(ng-click='factorialFunc()') n!
+                button(ng-click='divisionX()') 1/x
+                button(value='1', ng-click='number($event)') 1
+                button(value='2', ng-click='number($event)') 2
+                button(value='3', ng-click='number($event)') 3
+                button(value='-', ng-click='subtraction($event)') -
+                button(ng-click='addToStorage()') M+
+                br
+                button(ng-click='expFunc()') exp
+                button(ng-click='tanFunc()') tan
+                button(ng-click='tenPow()') 10^x
+                button(ng-click='numberPi()') π
+                button(value='0', ng-click='number($event)') 0
+                button(value='.', ng-click='number($event)') .
+                button(ng-click='answer()') =
+                button(value='+', ng-click='addition($event)') +
+                button(ng-click='subToStorage()') M-
